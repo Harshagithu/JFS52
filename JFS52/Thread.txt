@@ -1,0 +1,169 @@
+Thread:  A thread is an executional path or a sequence in a program.
+=======
+
+where do threads exist?
+
+- When we switch on the computer, a special program called operating system is loaded from hard disk to memory(RAM).
+- This OS will help us to interact with hardware and the CPU.
+- When you try to use any application in your computer, the OS will take that application program from the disk and creates an instance of that application in the memory.
+- This instance is called as process or conext of the application.
+
+- Each process contains:
+    - PID
+    - files which application use for reading and writing data.
+    - code
+    - data in the heap
+    - main threads
+       - main thread is the thread used by JVM to execute a program
+       - main thread will have its own stack, and instruction pointer.
+          Stack: a region in the memory where local variables or object references and methods are executed.
+          Instruction Pointer: It is a pointer which points to the address of the next instruction which the thread is going to execute.Each
+      
+  Process vs threads:
+  -------------------
+  Memory:
+  Each process will have its own memory.
+  Thread will share the memory with other threads in the process.
+  
+  Weight:
+  -------
+  Process is heavy weight as it takes more time to start and stop
+  It consumes more memory and other system resources.
+  Switching from one process to other takes time.
+  
+  thread lightweight, they share the memory with other
+  threads in the process.
+  threads take less time to start and stop.
+  
+  Thread creation:
+  ----------------
+  
+  Thread class is present in java.lang package.
+  
+  - We can create a thread by extending Thread class.
+  
+  steps:
+  1. Create a class which extends Thread.
+     1. provide implementation for run() method.
+        What ever we want to do with Thread must be placed in the run() method.
+     
+        Syntax:
+          public void run(){
+            //thread logic
+           }
+    2. After creating a Thread, the thread runs by calling start() method.
+    start() method will automatically call the run() method of Thread.
+    3. After creating a Thread:
+        To use/start the thread
+            a. Create your thread class object
+            b. use object reference to call start()
+     
+     
+ 2. By implementing Runnable interface.
+ 
+     1. Runnable interface is present in java.lang
+     
+     a. Create a class and implement Runnable interface
+     b. Runnable interface has a single abstract method
+        - it is run(0
+     c. After implementing run(), we need to call the Thread.
+      
+     2. A thread created either with Thread class or Runnable,
+       it must be started by calling start() method.
+     
+     3. To call a Runnable thread,
+          1. Create an object of Runnable Thread
+          2. Create an object of Thread class
+          3. And pass the RunnableThread object reference to the Thread constructor.
+          
+          
+  Thread methods:
+  1. start()
+    - starts a new thread
+    - it internally calls run()
+    
+  2. run()
+    - run() contains the task logic
+    - it must not be called directly.
+    - it will be automatically called when start() is invoked
+    
+  3. sleep()
+    - temporarily stop execution of the thread
+    - sleep(milliseconds) - will pause thread for specified milliseconds
+    - It is a static method of Thread class.
+       so it must be called by using class name eg. Thread.sleep(500).
+       
+  4. join()
+     - it will make the current thread wait until another thread finishes.
+     - it is used to control the execution order.
+     
+  Thread Life Cycle:
+   - A thread goes through different lifecycles during its execution.
+      We get the Thread state by using Thread.State
+     
+   1. New : A thread is NEW state when the thread is created but not started yet..
+   eg: Thread t1= new Thread();
+      start() is not called yet.
+      
+   2. RUNNABLE state:
+      - Thread is ready to run(waiting for CPU)
+      - Thread is in RUNNABLE state when start() method is called.
+      
+   3. RUNNING state:
+       When the thread is currently running, it is called RUNNING state.
+       When run() method is called thread is in RUNNING STATE
+       
+   4. BLOCKED state:
+      - A thread is said to be in a BLOCKED state when it is waiting for another thread to release the lock.
+      
+   5. WAITING state:
+       - When a thread is continously waiting for another thread
+         eg: when join() method is called, the currently running thread will go to WAITING state.
+         
+   6. TIMED_WAITING state:
+       - A thread will state for a specific time
+       eg: sleep(500);
+           join(500);
+       A thread in TIMED_WAITING State will automatically wakes up after the specified time.
+       
+    7. TERMINATED (Dead) state:
+        - A thread goes into TERMINATED state when the run() method completes.
+        - A thread cannot be restarted after it goes to TERMINATED state.
+        - A threads life ends here.
+        
+    Lifecycle: NEW -> RUNNABLE -> RUNNING -> (BLOCKED / WAITING / TIMED_WAITING) -> RUNNABLE -> TERMINATED
+       
+  Thread Priority:
+  
+  Thread Priority is a numerical value assigned to a thread
+  - It indicates the importance for CPU Scheduling.
+  - It is a hint given to Thread schedular about which thread should be executed first when multiple threads are ready to run.
+  
+  Priority range:
+  ===============
+  
+  Minimum priority - 1
+  Default - 5, this is called NORMAL priority
+  Maximum = 10, this is highest priority for a thread.
+  
+  Higher priority threads will get more chance to use CPU time.
+  Lower priority threads will get less chance to use CPU time.
+  
+  But threads will not always be scheduled by CPU as per the priority.
+  Priority is not always gauranteed.
+  
+  The priority depends on JVM + Operation system Schedular.
+  
+  Thread Synchronization:
+  ======================
+  
+  - Synchronization is a concept which makes sure that only one thread can execute the block of code at a time.
+  - It prevents inconsistent data rare condition when multiple threads try to modify the shared resource.
+  - To avoid this race condition we use a keyword "synchronized"
+  - When a thread enters a synchronized method it acquires the lock of the object.
+  - Other threads trying to execute the synchronized method on the same object must wait untill the lock is released.
+  - When a thread is executing synchronized method, no other will interrupt in the middle.
+  - When the thread completes its task, it releases the lock and changes made by the thread will be updated in the main memory.
+  - When the next thread acquires the lock, it reads the values from the memory.
+  - Without synchronization, multiple threads may read a shared resource eg. variable at the same time, this will lead to inconsistent data and this is called race condition.
+  

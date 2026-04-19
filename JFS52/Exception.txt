@@ -1,0 +1,73 @@
+Exception:
+
+  An exception can be defined as abnormal condition which disturbs the normal flow of the program.
+  When an exception occurs, the program terminates immediately, without executing remaining lines of code.
+  This is called abnormal condition.
+  
+  Even when the exception occurs in the program, if the program needs to terminate normally(meaning executing 
+  all the statements of the program)
+  we need to handle the exception. so that the program terminates gracefully. Graceful termination means 
+  normal termination.
+  
+  Exception handling is done with a special block in java known as try..catch block.
+  
+  syntax of try..catch block:
+  
+  try{
+    //exception causing code
+    //risky code
+  }
+  catch(Exception e){
+    //exception handling coder
+  }
+  
+  Exceptions are divided into 2 types:
+  
+  1. Unchecked exceptions:
+  
+  - Unchecked exceptions are the exceptions which are not checked by the compiler.
+  - they are the subclasses of RuntimeException.
+  - These exceptions are not mandatory to handle.
+  - The program will compile even if the exception is not handled with try..catch block.
+  eg: ArrayIndexOutOfBoundsException.
+      ArithmeticException.
+  - Unchecked Exceptions are also known as Runtime exceptions.
+  
+  2. Checked Exceptions:
+  
+  - Checked exceptions are the exceptions which are checked by the compiler.
+  - The program will not compile unless you handle the exception using try catch block or by using 'throws' keyword.
+  - The classes which are not the subclasses of RuntimeException class are known as checked exceptions.
+  - Checked exceptions are also known as Compile time exceptions.
+  - Checked exceptions generally occur when we work with resources like Files, database connections and network connections.
+  
+  try catch block vs throws:
+  --------------------------
+  
+  try catch is used to handle exception
+  throws keyword will not handle the exception, it just propogates the exception
+  
+  If an error condition is handled only with if condition
+  - it only prints a message
+  - it does not stop execution
+  - it does not inform the caller properly.
+  
+  - The message shown is hardcoded
+  - cannot be handled differently in different places
+  - execution continues even after error
+  - In real systems, Transaction should stop immediately if incorrect data is sent.
+  
+  Nested try blocks:
+  ==================
+  
+  Nested try blocks can handle different exceptions at different levels.
+  Generally,
+  Inner try block handles specific/critical operations.
+  Outer try blocks handles the remaining exceptions.
+  
+  Using nested try block:
+   - the program will continue to execute smoothly
+   - It performs the whole program from stopping
+   - after the inner exception is handled, the code in the outer try block can still executed.
+   - If the inner try block cannot handle the exceptio, we can still handle the exception in the outer block.
+  

@@ -1,0 +1,48 @@
+Association:
+
+  - Association represents a relationship between two independent classes. 
+  - Objects can exist independently of each other.
+
+  eg: Relationship between car and payment
+   - Both can exist independently
+   Association is just a connection between objects.
+ 
+Aggregation is a type of association:
+
+  - Aggregation is a special type of Association.
+  - It is a weak relationship.
+  - Child object has its own lifecycle, i.e it is independent of Parent.
+  - Parent Object does not control the childs life cycle.
+ 
+  Eg: Department -> Employee
+  Here, Employee object can exist without Department.
+
+  Meaning, a child can exist without parent.
+
+
+
+
+Composition is a type of association:
+
+  Composition is a Strong form of aggregation.
+  It represents a has-a relationship.
+  The child object cannot exist independently of the parent
+
+  Eg: Car -> Engine
+  A car contains an Engine
+  If the car is destroyed, Engine is also destroyed.
+  Engine cannot exist seperately, this is called composition.
+
+  Child objects lifecycle depends on Parent.
+  Parent Object controls creation and destruction of child.
+  Child object is created inside the Parent class.
+  
+Loosely coupled :
+-----------------
+Changes in one class do not affect other classes.
+Classes are independent and flexible
+
+Tightly coupled :
+-----------------
+Changes in one class affect the other classes directly.
+classes are dependent and rigid.
