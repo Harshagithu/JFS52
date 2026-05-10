@@ -1,0 +1,49 @@
+iostreams:
+==========
+
+ Stream:
+ =======
+  - Sequence of data that flows between a source and destination.
+ 
+ Input Stream:
+ =============
+  - Used to read the data.
+  eg: reading from keyboard or file or network
+
+ Output Stream:
+ ==============
+  - Used to write data
+  - eg: writing to a file, console.
+ 
+ There are two types of io streams:
+ 
+ 1. Character Streams:
+ =====================
+  Character Stream classes help us
+   - read the character data from a file
+   - write the character data to a file 
+   - Character streams reads and writes the data byte by byte.
+   
+  Some important character stream classes:
+   - File class
+     - It is present in java.io package
+     - It is used to create a file object and also to create a physical file and a physical directory(folder)
+     
+  
+ 1. FileWriter class:
+ ====================
+     - FileWriter class allows us to write the data to a file.
+     - It extends an abstract class Writer.
+     - FIleWriter object can be created with different constructors.
+     
+     Constructors:
+     =============
+     FileWriter(String filename);
+     FileWriter(String filename, boolean append)
+     FileWriter(File f)
+     FileWriter(File file,boolean append)
+     
+ 2. FileReader
+ 3. BufferedReader
+ 4. BufferedWriter
+ 5. PrintWriter

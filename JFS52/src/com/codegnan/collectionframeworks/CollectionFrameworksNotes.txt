@@ -1,0 +1,292 @@
+Collections Framework:
+======================
+
+ - Collections are group of objects.
+ - Collections framework is an architecture for representing and manipulation Collections.
+ - Collection framework contains the following:
+   1. Interfaces
+   2. Implementations
+   3. Algorithms for searching, sorting etc.
+   
+List Interface:
+===============
+List interface extends Collection interface.
+It is in java.util package.
+
+Implementation classes of List:
+===============================
+- ArrayList
+- LinkedList
+- Vector(Legacy class)
+- Stack
+
+ArrayList:
+==========
+- ArrayList implements List interface.
+- ArrayList internally maintains an array.
+- It stores the objects in contigous memory location.
+- It is dynamic in nature, its size automatically increases, once the threshold level is reached.
+- Default capacity of an arrayList is 10.
+- When 10 elements are filled, a New arrayList with double the capacity of the original array is created.
+  And all the elements from old array is shifted to new array.
+  Old array is removed.
+- ArrayList supports heterogeneous types by default, because it is a generic class.
+- You can make an ArrayList typesafe by specifying the type in angular brace.
+- ArrayList allows duplicates.
+- ArrayList allows nulls.
+- Elements in the ArrayList can be accessed with an index. eg: arr.get(1).
+
+LinkedList:
+===========
+
+- Internally maintains a Doubly Linked List.
+- It is best suited for Insertions and deletion operations.
+
+- ArrayList is best suited for Search operations.
+- ArrayList is not suitable when you have huge number of insertions and deletions as there is shifting of elements when an element is added or deleted.
+
+Vector:
+=======
+
+ - Vector implements List interface
+ - It is like ArrayList
+ - Difference between ArrayList and vector is that Vector is synchronized i.e. it is thread safe by default
+ - It grows automatically when elements are added 
+ - It mains insertion order
+ - allows duplicates
+ - allows null values
+ 
+ Vector internally implements synchronization.
+ But ArrayList will not use synchronization by default
+ - To synchronize an ArrayList:
+    Collections.synchronizedList(new ArrayList());
+    
+Stack:
+======
+
+ - Stack extends Vector class.
+ - Since it extends vector class, it is also synchronized.
+ - Stack uses LIFO(Last In First Out) data structure.
+ - The last element added is the first to be removed.
+ 
+Important Methods:
+==================
+
+ push(element): add element at the top of the stack.
+ pop(): remove top element
+ peek(): view top element
+ empty(): checks whether stack is empty
+ search(): position from top
+ 
+Set Interface:
+==============
+
+ - Set interface extends Collection interface
+ - Set represents collection of unique elements (no duplicates allowed).
+ - No index based access like list.
+ - It allows only one null elements.
+ - Sets are by default unordered.
+
+Implementations of Set: 
+=======================
+  - HashSet
+  - LinkedHashSet
+  - TreeSet
+  
+HashSet:
+========
+
+ - HashSet is a class which implements Set interface.
+ - Duplicates are not allowed.
+ - It will not maintain insertion order.
+ - It allows one null element.
+ - HashSet internally uses hashing mechanism.
+ - Hashing converts each element into a hashcode to decide where to store in memory.
+ - HashSet internally uses an Array (HashMap).
+ - The hashcode decides in which rray index the element must be stored.
+ 
+LinkedHashSet:
+==============
+
+ - LinkedHashSet implements Set interface.
+ - It will not allow duplicates.
+ - LinkedHashSet is same like HashSet, but it will maintain the insertion order.
+ - It can maintain insertion order because internally it uses links between the objects.
+ - Since it maintains the links, more memory is required for LinkedHashSet.
+ - HashSet is generally faster than LinkedHashSet.
+ 
+Overriding hashCode() and equals() methods in HashSet:
+======================================================
+
+ - HashSet stores unique elements only.
+ - Internally it uses 2 methods
+    - hashCode() - find the bucket location(index)
+    - equals() - to check duplicate values inside the bucket.
+ - If we do not override the hashCode() and equals() methods:
+    - the default equals() method compares memory address.
+    - the default hashCode() method is also based on memory address.
+    - so, even though the custom objects(eg. student object) are having the same data, they are treated as 2 different student objects.
+    - That means, duplicates are allowed. 
+ - To overcome this problem, we will override the equals() and hashCode() methods.
+ - equals() - must compare object data.
+ - hashCode() - must generate has based on same fields.
+ - Then, if a same object is inserted again, it will be treated as the same object, this way, HashSet avoid duplicate custom objects.
+ 
+ Internally:
+ ===========
+ 1. hashCode() method finds the index/bucket.
+ 2. If index already has an object, equals() checks for duplicate.
+ 3. If equals() method finds the duplicate, object is not added.
+ 
+ Important:
+ ==========
+ - To make sure that the objects are compared not with memory reference.
+ - But with logical equality, we must override hashCode() and equals() methods in the class.
+    
+ Flow of HashSet after overriding equals() and hashCode():
+ =========================================================
+ 1. add(Object)
+        |
+        |
+        |
+     hashCode()
+        |
+        |
+        |
+    same bucket?
+        |Yes -> equals()
+                   |
+                   true  -> reject the object
+                   false -> insert the object
+        |
+        No -> object is inserted directly.
+        
+Cursor:
+=======
+ - Cursor allows us to iterate the elements of a collection.
+ - Difference between cursor and for loop is that 
+ - Cursors can traverse and modify a collection safely during the iteration.
+ - For loop can traverse the collection but it is not safe for modification while iterating.
+ 
+ 3 types of cursor:
+ ==================
+ - 1. Enumeration cursor:
+      ===================
+       - which is used for legacy classes like vector.
+ - 2. Iterator cursor:
+      ================
+       - which can be used with all collection classes.
+       - Can traverse only in forward direction.
+       - you can perform operations like remove().
+ - 3. ListIterator:
+      =============
+      - It extends Iterator but supports only List classes.
+      - Traverses in both forward and reverse directions.
+      
+ 1.Enumeration:
+ ==============
+  - To get Enumeration object, use elements() method.
+  - elements() method returns an Enumeration.
+  
+  Methods:
+  ========
+  - hasMoreElements() - returns a boolean value true if the objects exist in the enumeration. else returns false.
+  - nextElement()     - returns the next element of the Enumeration. 
+ 
+ Map:
+ ====
+  - Part of collections framework.
+  - Map interface does not extend collection interface.
+  - Map is in java.util package.
+  - Stores object in key value pairs.
+  - keys are unique.
+  - values allows duplicates
+  - Map allows one Null key for some implementations
+  - Map allows multiple nulls in values.
+  
+  Map interface is implemented by:
+  ================================
+  1. HashMap
+  2. LinkedHashMap
+  3. TreeMap
+  4. HashTable(legacy class like vector).
+  
+  1.HashMap:
+  ==========
+  - HashMap stores the objects in the form of key and value pairs.
+  - Key is an object and value is also an object.
+  - Each key and value pair is known as entry.
+  - Set of such entries is known as EntrySet.
+  
+  To get entrySet from HashMap, hashMap.entrySet() method is used.
+  
+  Entry:
+  ======
+  - Entry is an interface which represents Key and Value pair.  
+  - map.keySet()     - gives the set of keys.
+  - map.values()     - gives the values in the map.
+  - map.entrySet()   - retrieves set of entries.
+  - entry.getKey()   - to get the key of a particular entry.
+  - entry.getValue() - to get the value of a particular entry.
+  
+  HashMap allows one null key, and multiple null values.
+  Insertion order is not preserved in HashMap.
+  
+  LinkedHashMap:
+  ==============
+  - same as HashMap but it maintains insertion order.
+  
+  TreeMap:
+  ========
+  - Same as HashMap but elements are sorted automatically.
+  - Strings are sorted in alphabetical order based on the keys.
+  - Integers  are stored in ascending order based on the keys.
+  
+  Queue:
+  ======
+  
+  add() vs offer():
+  =================
+   - Both are used to add the element in the Queue.
+   - add() throws an exception if queue is full.
+   
+   - offer() returns false if queue is full, it will not throw exception
+   - It is always preferred to add element in the queue.
+   
+  remove() vs poll():
+  ===================
+   - Both are used to remove the element at the front.
+   - remove() throws exception if the queue is empty.
+   
+   - poll() returns null if queue is empty.
+   - It is always safe to use poll() to remove the element from the queue.
+   
+  element() vs peek():
+  ====================
+   - element() and peek() both are used to retrieve front element without removal.
+   - element() throws exception if queue is empty.
+   
+   - peek() returns null if queue is empty, so peek() is preferred to lookup the front element.
+   
+  Priority Queue:
+  ===============
+   - PriorityQueue is a class that implements the Queue interface.
+   - But elements in PriorityQueue does not follow FIFO.
+   - Elements are ordered based on the priority of the queue.
+   
+   It has methods:
+   ===============
+   offer() - insert
+   poll()  - remove highest priority
+   peek()  - to view highest priority element
+   
+  Priority: 
+  =========
+   - Priority is the order in which elements are removed from the queue.
+   - In PriorityQueue, the element with highest priority comes out first, not the element which is inserted first.
+   
+   - Java uses natural ordering for priority.
+      - For number         - smallest number will get the highest priority.
+      - For Strings        - Alphabetically smallest strings will have highest priority.
+      - For custom objects - We can define our own priority by implementing comparator.
+           

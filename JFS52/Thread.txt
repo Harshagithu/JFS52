@@ -167,3 +167,54 @@ where do threads exist?
   - When the next thread acquires the lock, it reads the values from the memory.
   - Without synchronization, multiple threads may read a shared resource eg. variable at the same time, this will lead to inconsistent data and this is called race condition.
   
+  Producer - consumer Problem:
+  ============================
+  
+  In Producer consumer,
+    It involves two types of threads.
+     - Producer Thread - generates data
+     - Consumer Thread - uses(consumes) the thread
+    Both these threads share a common resource eg. Message/Buffer
+    
+    There will be a problem when:
+     - consumer may try to when no data is available
+     - producer may try to write when the buffer or eg. box is full.
+     
+    Solution or Goal is to:
+     - Make sre that there is proper coordination between threads.
+     - we must take sure that no reading must happen from consumer when no message
+     - no writing of the message when message is still not consumed by the consumer.
+     
+    Working Logic:
+     Producer:
+       - wait until the message is consumed by Consumer 
+       - writes message only after message is consumed by consumer
+       - Notifies the consumer after writing message
+       
+     Consumer:
+       - wait till producer produces message
+       - reads the message only when message is available.
+       - after reading it notifies the producer.
+       
+   wait():
+   -------
+       - wait() method is present in Object class.
+       - it causes the current thread to pause execution
+       - thread enters waiting state
+       - it must be called only inside synchronized method
+       - it releases the lock on the object
+       - waits until another thread calls notify()/notifyAll()
+       
+   notify():
+   ---------
+       - Wakes up one waiting thread.
+       - Must be called inside a synchronized method
+       - does not release the lock immediately
+       - the awakened thread will run only when the lock is released.
+       
+   notifyAll():
+   ------------
+       - wakes up all waiting threads
+       - Must be called inside a synchronized block
+       - It is used to wake up multiple waiting threads.
+       

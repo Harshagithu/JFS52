@@ -1,0 +1,51 @@
+Java 8 enhancements:
+
+ - Introduced in 2014
+ - Java 8 introduced functional programming in java.
+ - Functions can be used in:
+    - Variables
+    - can be passed as arguments to the methods.
+    - Method can be used as a return type for another method.
+ 
+ Important features of java 8:
+ 1. Functional interface - Default and static methods in Functional Interface.
+ 2. Lambda expressions.
+ 3. Stream API.
+ 4. Optional class
+ 5. :: Double colon operator used for
+     - Method references.
+     - Constructor references.
+     
+ Java 8 introduced Functional interfaces
+  - An interface with single abstract method.
+  - Multiple static and default methods.
+  - Functional interface can be implemented
+     - Using Lambda expressions, Method references.
+     
+ Java 8:
+   - Introduces concrete methods in interfaces - static methods and default methods.
+   - These static and default nedd not be overridden in implementation classes.
+   
+   default method:
+   ===============
+    - It is public by default.
+    - It is created by using a keyword 'default'.
+    eg:
+    default void myDefaultMethod() {
+      System.out.println("Default method in interface");
+    }
+    - default methods need not be overridden in the implementation class.
+    - We can use the default method implementation in the interface directly.
+    
+   static method:
+   =============
+    - A method which is declared using static keyword.
+    - It can be accessed in implementation classes using interface name.
+      eg: MyInterface.myStaticMethod();
+      
+      eg:
+      public static void myStaticMethod(){
+         System.out.println("My static method");
+      }
+    
+      

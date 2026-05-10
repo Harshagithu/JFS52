@@ -1,0 +1,19 @@
+Generics:
+=========
+Generics will allow a classes, interfaces and methods to work with different data types, while providing compile time type safety.
+
+Typesafety:
+===========
+Typersafety means errors caused by using the wrong data type are detected at compile time. This prevents ClassCastException at runtime.
+
+Generics works with reference types.
+eg: 
+Printer<int> // Wrong
+Printer<Integer> // Correct
+
+The type parameter names:
+T - type
+E - Element
+K - Key
+V - Value
+N - Number
